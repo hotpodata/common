@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="acknowledgements">Acknowledgements</string>
+
+    <string name="autofittextview">AutoFitTextView</string>
+    <string name="autofittextview_license">@string/license_apache</string>
+    <string name="autofittextview_url">https://github.com/grantland/android-autofittextview</string>
+
+    <string name="rxandroid">RxAndroid</string>
+    <string name="rxandroid_license">@string/license_apache</string>
+    <string name="rxandroid_url">https://github.com/ReactiveX/RxAndroid</string>
+
+    <string name="rxjava">RxJava</string>
+    <string name="rxjava_license">@string/license_apache</string>
+    <string name="rxjava_url">https://github.com/ReactiveX/RxJava</string>
+
+    <string name="rxkotlin">RxKotlin</string>
+    <string name="rxkotlin_license">@string/license_apache</string>
+    <string name="rxkotlin_url">https://github.com/ReactiveX/RxKotlin</string>
+
+    <string name="timber">Timber</string>
+    <string name="timber_license">@string/license_apache</string>
+    <string name="timber_url">https://github.com/JakeWharton/timber</string>
+
+    <string name="license_apache">Apache 2.0</string>
+    <string name="license_mit">MIT</string>
+</resources>

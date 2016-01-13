@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="apps_label">Our other apps</string>
+
+    <string name="market_intent_TEMPLATE">market://details?id=%1$s</string>
+
+    <string name="baconmasher">BaconMasher</string>
+    <string name="baconmasher_desc">One part reddit images, one part reddit comments, mash mash mash!</string>
+    <string name="baconmasher_appId">com.hotpodata.baconmasher.free</string>
+    <string name="baconmasherPro_appId">com.hotpodata.baconmasher.pro</string>
+
+    <string name="blockelganger">Blockelgänger</string>
+    <string name="blockelganger_desc">You can\'t speak with it. You can\'t reason with it. You must smash into it.</string>
+    <string name="blockelganger_appId">com.hotpodata.blockelganger</string>
+
+    <string name="filecat">FileCat</string>
+    <string name="filecat_desc">Browse files in a colorful way!</string>
+    <string name="filecat_appId">com.hotpodata.filecat.free</string>
+    <string name="filecatPro_appId">com.hotpodata.filecat.pro</string>
+
+    <string name="redchain">RedChain</string>
+    <string name="redchain_desc">Complete your goals every day!</string>
+    <string name="redchain_appId">com.hotpodata.redchain.free</string>
+    <string name="redchainPro_appId">com.hotpodata.redchain.pro</string>
+
+    <string name="wikicat">WikiCat</string>
+    <string name="wikicat_desc">Browse Wiki Encyclopedia in a colorful way!</string>
+    <string name="wikicat_appId">com.hotpodata.wikicat.free</string>
+    <string name="wikicatPro_appId">com.hotpodata.wikicat.pro</string>
+
+    <string name="twistris">Twistris</string>
+    <string name="twistris_desc">A classic game with a twist.</string>
+    <string name="twistris_appId">com.hotpodata.twistris</string>
+</resources>

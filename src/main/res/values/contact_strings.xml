@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="actions">Actions</string>
+
+    <string name="visit_website">Visit Hot PoData</string>
+    <string name="visit_website_blurb">Visit our website, read our blog, get updates.</string>
+    <string name="visit_website_url">http://www.hotpodata.com</string>
+
+    <string name="email_title">Email the developer</string>
+    <string name="email_addr_TEMPLATE">hotpodata+%1$s@gmail.com</string>
+
+    <string name="twitter_title">Follow us on twitter</string>
+    <string name="twitter_handle">\@hotpodata</string>
+    <string name="twitter_url">https://twitter.com/hotpodata</string>
+
+    <string name="github_title">Follow us on github</string>
+    <string name="github_handle">hotpodata</string>
+    <string name="github_url">https://github.com/hotpodata</string>
+</resources>

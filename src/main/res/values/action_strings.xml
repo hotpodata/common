@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="this_app">This App</string>
+
+    <string name="rate_us">Rate this app</string>
+    <string name="rate_us_blerb_template">Help spread the %1$s word!</string>
+
+    <string name="go_pro">Go Pro!</string>
+    <string name="go_pro_blurb">Support that developer!</string>
+
+</resources>
