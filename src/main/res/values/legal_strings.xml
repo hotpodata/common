@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="legal_heading">Legal</string>
+    <string name="legal_blurb">This software application is provided as is. Its creator(s) take no responsibility for consequences of its installation or use.</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="privacy_policy_blurb">Click here to read our privacy policy.</string>
+</resources>

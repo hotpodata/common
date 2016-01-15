@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">common</string>
+
+    <string name="version_template">V%1$s by HotPoData LLC</string>
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_closed">Drawer Closed</string>
+
 </resources>

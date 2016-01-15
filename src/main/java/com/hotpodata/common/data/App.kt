@@ -12,7 +12,7 @@ import java.util.*
 /**
  * Created by jdrotos on 1/13/16.
  */
-open class App(val iconResId: Int, val name: String, val desc: String, val applicationId: String, val proApplicationId: String? = "") {
+open class App(val id: HotPoDataApps, val iconResId: Int, val name: String, val desc: String, val applicationId: String, val privacyPolicyUrl: String? = null, val proApplicationId: String? = "") {
     object Factory {
         fun genApps(context: Context, exclude: HotPoDataApps): List<App> {
             var apps = ArrayList<App>()
@@ -27,11 +27,11 @@ open class App(val iconResId: Int, val name: String, val desc: String, val appli
         fun createApp(context: Context, app: HotPoDataApps): App {
             var icon = when (app) {
                 HotPoDataApps.BACONMASHER -> R.mipmap.launcher_baconmasher
-                HotPoDataApps.BLOCKELGANGER -> R.mipmap.launcher_baconmasher
-                HotPoDataApps.FILECAT -> R.mipmap.launcher_baconmasher
-                HotPoDataApps.REDCHAIN -> R.mipmap.launcher_baconmasher
-                HotPoDataApps.TWISTRIS -> R.mipmap.launcher_baconmasher
-                HotPoDataApps.WIKICAT -> R.mipmap.launcher_baconmasher
+                HotPoDataApps.BLOCKELGANGER -> R.mipmap.launcher_blockelganger
+                HotPoDataApps.FILECAT -> R.mipmap.launcher_filecat
+                HotPoDataApps.REDCHAIN -> R.mipmap.launcher_redchain
+                HotPoDataApps.TWISTRIS -> R.mipmap.launcher_twistris
+                HotPoDataApps.WIKICAT -> R.mipmap.launcher_wikicat
             }
             var name = when (app) {
                 HotPoDataApps.BACONMASHER -> context.getString(R.string.baconmasher)
@@ -64,7 +64,7 @@ open class App(val iconResId: Int, val name: String, val desc: String, val appli
                 HotPoDataApps.WIKICAT -> context.getString(R.string.wikicatPro_appId)
                 else -> ""
             }
-            return App(icon, name, desc, applicationId, proId)
+            return App(app, icon, name, desc, applicationId, proId)
         }
     }
 
@@ -94,6 +94,27 @@ open class App(val iconResId: Int, val name: String, val desc: String, val appli
             return intent
         }
         return null
+    }
+
+    fun genPrivacyPolicyIntent(context: Context): Intent {
+        val i = Intent(Intent.ACTION_VIEW)
+        if (!TextUtils.isEmpty(privacyPolicyUrl)) {
+            i.setData(Uri.parse(privacyPolicyUrl))
+        }
+        return i
+    }
+
+    fun firePrivacyPolicyIntent(context: Context): Boolean {
+        try {
+            if (!TextUtils.isEmpty(privacyPolicyUrl)) {
+                context.startActivity(genPrivacyPolicyIntent(context))
+                return true
+            }
+        } catch(ex: Exception) {
+            Timber.e(ex, "Failure to firePrivacyPolicyIntent")
+        }
+        return false
+
     }
 
 

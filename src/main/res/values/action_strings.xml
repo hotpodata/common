@@ -2,6 +2,8 @@
 <resources>
     <string name="this_app">This App</string>
 
+    <string name="actions">Actions</string>
+
     <string name="rate_us">Rate this app</string>
     <string name="rate_us_blerb_template">Help spread the %1$s word!</string>
 

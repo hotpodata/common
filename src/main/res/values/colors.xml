@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="divider">#B6B6B6</color>
+    <color name="settings_row_title_color">#0F0F0F</color>
+    <color name="settings_row_subtitle_color">#5F5F5F</color>
+</resources>

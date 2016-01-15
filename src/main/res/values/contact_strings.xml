@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="actions">Actions</string>
-
     <string name="visit_website">Visit Hot PoData</string>
     <string name="visit_website_blurb">Visit our website, read our blog, get updates.</string>
     <string name="visit_website_url">http://www.hotpodata.com</string>

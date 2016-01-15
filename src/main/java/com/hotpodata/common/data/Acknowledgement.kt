@@ -3,9 +3,11 @@ package com.hotpodata.common.data
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.text.TextUtils
 import com.hotpodata.common.R
 import com.hotpodata.common.enums.Libraries
 import com.hotpodata.common.enums.Licenses
+import timber.log.Timber
 import java.util.*
 
 /**
@@ -13,7 +15,7 @@ import java.util.*
  */
 abstract class Acknowledgement(val displayName: String, val licenseName: String) {
     object Factory {
-        fun genAcknowledgements(context: Context, vararg libraries: Libraries): List<Acknowledgement> {
+        fun genAcknowledgements(context: Context, libraries: List<Libraries>): List<Acknowledgement> {
             var acks = ArrayList<Acknowledgement>()
             for (lib in libraries) {
                 acks.add(createAcknowledgement(context, lib))
@@ -61,7 +63,13 @@ abstract class Acknowledgement(val displayName: String, val licenseName: String)
 
     abstract fun genActionIntent(context: Context): Intent
 
-    fun fireActionIntent(context: Context) {
-        context.startActivity(genActionIntent(context))
+    fun fireActionIntent(context: Context): Boolean {
+        try {
+            context.startActivity(genActionIntent(context))
+            return true
+        } catch(ex: Exception) {
+            Timber.e(ex, "Failure in fireActionIntent")
+        }
+        return false
     }
 }
