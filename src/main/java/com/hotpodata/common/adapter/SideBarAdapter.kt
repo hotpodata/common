@@ -8,19 +8,30 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.gms.analytics.HitBuilders
 import com.hotpodata.common.R
 import com.hotpodata.common.adapter.viewholder.*
 import com.hotpodata.common.data.Acknowledgement
 import com.hotpodata.common.data.App
 import com.hotpodata.common.data.Contact
 import com.hotpodata.common.enums.Libraries
+import com.hotpodata.common.interfaces.IAnalyticsProvider
 import timber.log.Timber
 import java.util.*
 
 /**
  * Created by jdrotos on 11/7/15.
  */
-abstract class SideBarAdapter(val ctx: Context, val app: App, val isPro: Boolean, val showGoPro: Boolean, vararg libs: Libraries) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+abstract class SideBarAdapter(val ctx: Context, val analyticsProvider:IAnalyticsProvider?, val app: App, val isPro: Boolean, val showGoPro: Boolean, vararg libs: Libraries) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    val CATEGORY_SIDEBAR = "SideBar"
+    val ACTION_RATE_APP = "Rate_App"
+    val ACTION_GO_PRO = "Go_Pro"
+    val ACTION_CONTACT = "Contact"
+    val ACTION_OTHER_APP = "Other_App"
+    val ACTION_ACK = "Acknowledgement"
+    val ACTION_PRIVACY_POLICY = "Privacy_Policy"
+
     private val ROW_TYPE_HEADER = 0
     private val ROW_TYPE_ONE_LINE = 1
     private val ROW_TYPE_TWO_LINE = 2
@@ -36,7 +47,7 @@ abstract class SideBarAdapter(val ctx: Context, val app: App, val isPro: Boolean
         mLibs = ArrayList<Libraries>()
         mLibs.addAll(libs)
     }
-    
+
     public fun setAccentColor(color: Int) {
         mColor = color;
         rebuildRowSet()
@@ -102,11 +113,31 @@ abstract class SideBarAdapter(val ctx: Context, val app: App, val isPro: Boolean
         var actionRows = ArrayList<Any>()
         actionRows.add(SideBarAdapter.RowSettings(ctx.resources.getString(R.string.rate_us), ctx.resources.getString(R.string.rate_us_blerb_template, app.name), View.OnClickListener {
             app.firePlayStoreIntent(ctx, isPro)
+            try {
+                analyticsProvider?.getTracker(ctx)?.let {
+                    it.send(HitBuilders.EventBuilder()
+                            .setCategory(CATEGORY_SIDEBAR)
+                            .setAction(ACTION_RATE_APP)
+                            .build());
+                }
+            } catch(ex: Exception) {
+                Timber.e(ex, "Error recording analytics event.")
+            }
         }, R.drawable.ic_action_rate))
         if (!isPro && showGoPro) {
             actionRows.add(RowDiv(true))
             actionRows.add(SideBarAdapter.RowSettings(ctx.resources.getString(R.string.go_pro), ctx.resources.getString(R.string.go_pro_blurb), View.OnClickListener {
                 app.firePlayStoreIntent(ctx, true)
+                try {
+                    analyticsProvider?.getTracker(ctx)?.let {
+                        it.send(HitBuilders.EventBuilder()
+                                .setCategory(CATEGORY_SIDEBAR)
+                                .setAction(ACTION_GO_PRO)
+                                .build());
+                    }
+                } catch(ex: Exception) {
+                    Timber.e(ex, "Error recording analytics event.")
+                }
             }, R.drawable.ic_action_rate))
         }
         var contacts = Contact.Factory.genContacts(ctx, app.name)
@@ -114,6 +145,17 @@ abstract class SideBarAdapter(val ctx: Context, val app: App, val isPro: Boolean
             actionRows.add(RowDiv(true))
             actionRows.add(SideBarAdapter.RowSettings(contact.name, contact.desc, View.OnClickListener {
                 contact.fireIntent(ctx)
+                try {
+                    analyticsProvider?.getTracker(ctx)?.let {
+                        it.send(HitBuilders.EventBuilder()
+                                .setCategory(CATEGORY_SIDEBAR)
+                                .setAction(ACTION_CONTACT)
+                                .setLabel(contact.name)
+                                .build());
+                    }
+                } catch(ex: Exception) {
+                    Timber.e(ex, "Error recording analytics event.")
+                }
             }, contact.iconResId))
         }
         if (actionRows.size > 0) {
@@ -132,6 +174,17 @@ abstract class SideBarAdapter(val ctx: Context, val app: App, val isPro: Boolean
             }
             appRows.add(SideBarAdapter.RowSettings(app.name, app.desc, View.OnClickListener {
                 app.firePlayStoreIntent(ctx, false)
+                try {
+                    analyticsProvider?.getTracker(ctx)?.let {
+                        it.send(HitBuilders.EventBuilder()
+                                .setCategory(CATEGORY_SIDEBAR)
+                                .setAction(ACTION_OTHER_APP)
+                                .setLabel(app.name)
+                                .build());
+                    }
+                } catch(ex: Exception) {
+                    Timber.e(ex, "Error recording analytics event.")
+                }
             }, app.iconResId))
         }
         if (appRows.size > 0) {
@@ -148,6 +201,17 @@ abstract class SideBarAdapter(val ctx: Context, val app: App, val isPro: Boolean
         for (ack in acks) {
             ackRows.add(SideBarAdapter.RowSettings(ack.displayName, ack.licenseName, View.OnClickListener {
                 ack.fireActionIntent(ctx)
+                try {
+                    analyticsProvider?.getTracker(ctx)?.let {
+                        it.send(HitBuilders.EventBuilder()
+                                .setCategory(CATEGORY_SIDEBAR)
+                                .setAction(ACTION_ACK)
+                                .setLabel(ack.displayName)
+                                .build());
+                    }
+                } catch(ex: Exception) {
+                    Timber.e(ex, "Error recording analytics event.")
+                }
             }))
         }
         if (ackRows.size > 0) {
@@ -162,6 +226,16 @@ abstract class SideBarAdapter(val ctx: Context, val app: App, val isPro: Boolean
         if (!TextUtils.isEmpty(app.privacyPolicyUrl)) {
             sideBarRows.add(SideBarAdapter.RowSettings(ctx.resources.getString(R.string.privacy_policy), ctx.resources.getString(R.string.privacy_policy_blurb), View.OnClickListener {
                 app.firePrivacyPolicyIntent(ctx)
+                try {
+                    analyticsProvider?.getTracker(ctx)?.let {
+                        it.send(HitBuilders.EventBuilder()
+                                .setCategory(CATEGORY_SIDEBAR)
+                                .setAction(ACTION_PRIVACY_POLICY)
+                                .build());
+                    }
+                } catch(ex: Exception) {
+                    Timber.e(ex, "Error recording analytics event.")
+                }
             }))
         }
         sideBarRows.add(SideBarAdapter.RowSettings(ctx.resources.getString(R.string.legal_heading), ctx.resources.getString(R.string.legal_blurb), View.OnClickListener { }))
