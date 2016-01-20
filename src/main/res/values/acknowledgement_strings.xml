@@ -6,6 +6,22 @@
     <string name="autofittextview_license">@string/license_apache</string>
     <string name="autofittextview_url">https://github.com/grantland/android-autofittextview</string>
 
+    <string name="javatuples">JavaTuples</string>
+    <string name="javatuples_license">@string/license_apache</string>
+    <string name="javatuples_url">http://www.javatuples.org/</string>
+
+    <string name="okhttp">OkHttp</string>
+    <string name="okhttp_license">@string/license_apache</string>
+    <string name="okhttp_url">http://square.github.io/okhttp/</string>
+
+    <string name="picasso">Picasso</string>
+    <string name="picasso_license">@string/license_apache</string>
+    <string name="picasso_url">http://square.github.io/picasso/</string>
+
+    <string name="retrofit">Retrofit</string>
+    <string name="retrofit_license">@string/license_apache</string>
+    <string name="retrofit_url">http://square.github.io/retrofit/</string>
+
     <string name="rxandroid">RxAndroid</string>
     <string name="rxandroid_license">@string/license_apache</string>
     <string name="rxandroid_url">https://github.com/ReactiveX/RxAndroid</string>
@@ -21,6 +37,7 @@
     <string name="timber">Timber</string>
     <string name="timber_license">@string/license_apache</string>
     <string name="timber_url">https://github.com/JakeWharton/timber</string>
+
 
     <string name="license_apache">Apache 2.0</string>
     <string name="license_mit">MIT</string>

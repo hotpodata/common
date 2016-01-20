@@ -5,6 +5,10 @@ package com.hotpodata.common.enums
  */
 enum class Libraries {
     AutoFitTextView,
+    JavaTuples,
+    OkHttp,
+    Picasso,
+    RetroFit,
     RxAndroid,
     RxJava,
     RxKotlin,

@@ -26,6 +26,10 @@ abstract class Acknowledgement(val displayName: String, val licenseName: String)
         fun createAcknowledgement(context: Context, library: Libraries): Acknowledgement {
             var libDisplayName: String = when (library) {
                 Libraries.AutoFitTextView -> context.getString(R.string.autofittextview)
+                Libraries.JavaTuples -> context.getString(R.string.javatuples)
+                Libraries.OkHttp ->context.getString(R.string.okhttp)
+                Libraries.Picasso ->context.getString(R.string.picasso)
+                Libraries.RetroFit ->context.getString(R.string.retrofit)
                 Libraries.RxAndroid -> context.getString(R.string.rxandroid)
                 Libraries.RxJava -> context.getString(R.string.rxjava)
                 Libraries.RxKotlin -> context.getString(R.string.rxkotlin)
@@ -34,6 +38,10 @@ abstract class Acknowledgement(val displayName: String, val licenseName: String)
 
             var libActionUrl: String = when (library) {
                 Libraries.AutoFitTextView -> context.getString(R.string.autofittextview_url)
+                Libraries.JavaTuples -> context.getString(R.string.javatuples_url)
+                Libraries.OkHttp ->context.getString(R.string.okhttp_url)
+                Libraries.Picasso ->context.getString(R.string.picasso_url)
+                Libraries.RetroFit ->context.getString(R.string.retrofit_url)
                 Libraries.RxAndroid -> context.getString(R.string.rxandroid_url)
                 Libraries.RxJava -> context.getString(R.string.rxjava_url)
                 Libraries.RxKotlin -> context.getString(R.string.rxkotlin_url)
