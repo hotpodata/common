@@ -34,33 +34,61 @@ open class ChameleonActivity : AppCompatActivity() {
         mResumed = false
     }
 
+    fun genSetColorAnimator(color: Int): ValueAnimator {
+        val animator = ValueAnimator.ofObject(ArgbEvaluator(), mLastBarColor, color).setDuration(500)
+        animator.addUpdateListener { animation ->
+            updateColor(animation.animatedValue as Int)
+        }
+        animator.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationStart(animation: Animator?) {
+                if (animator != mBarColorAnimator) {
+                    mBarColorAnimator?.cancel()
+                    mBarColorAnimator = animator
+                }
+            }
+
+            override fun onAnimationEnd(animation: Animator) {
+                finalizeColor(color)
+            }
+        })
+        return animator
+    }
+
+    fun updateColor(color: Int) {
+        (mAbBackgroundDrawable as? ColorDrawable)?.color = color
+        (mAbSplitBackgroundDrawable as? ColorDrawable)?.color = color
+        (mActionToolbarBackgroundDrawable as? ColorDrawable)?.color = color
+        updateStatusBarColor(color)
+        onColorUpdated(color)
+    }
+
+    fun finalizeColor(color: Int) {
+        updateActionBarColors(color)
+        updateStatusBarColor(color)
+        onColorFinalized(color)
+    }
+
     fun setColor(color: Int, animate: Boolean) {
         if (mLastBarColor == -1) {
             mLastBarColor = color
         }
         if (animate && mResumed && color != mLastBarColor) {
             mBarColorAnimator?.cancel()
-            val animator = ValueAnimator.ofObject(ArgbEvaluator(), mLastBarColor, color).setDuration(500)
-            animator.addUpdateListener { animation ->
-                (mAbBackgroundDrawable as? ColorDrawable)?.color = animation.animatedValue as Int
-                (mAbSplitBackgroundDrawable as? ColorDrawable)?.color = animation.animatedValue as Int
-                (mActionToolbarBackgroundDrawable as? ColorDrawable)?.color = animation.animatedValue as Int
-                updateStatusBarColor(animation.animatedValue as Int)
-            }
-            animator.addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    updateActionBarColors(color)
-                    updateStatusBarColor(color)
-                }
-            })
+            val animator = genSetColorAnimator(color)
             mBarColorAnimator = animator
             animator.start()
         } else if ((!animate || !mResumed) && (mBarColorAnimator == null || !mBarColorAnimator!!.isRunning)) {
-            updateActionBarColors(color)
-            updateStatusBarColor(color)
+            finalizeColor(color)
         }
     }
 
+    open fun onColorUpdated(color: Int) {
+
+    }
+
+    open fun onColorFinalized(color: Int) {
+
+    }
 
     protected fun updateActionBarColors(color: Int) {
         if (mAbBackgroundDrawable == null || mAbSplitBackgroundDrawable == null) {
