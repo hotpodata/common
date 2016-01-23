@@ -59,6 +59,7 @@ open class App(val id: HotPoDataApps, val iconResId: Int, val name: String, val 
             }
             var proId = when (app) {
                 HotPoDataApps.BACONMASHER -> context.getString(R.string.baconmasherPro_appId)
+                HotPoDataApps.BLOCKELGANGER -> context.getString(R.string.blockelgangerPro_appId)
                 HotPoDataApps.FILECAT -> context.getString(R.string.filecatPro_appId)
                 HotPoDataApps.REDCHAIN -> context.getString(R.string.redchainPro_appId)
                 HotPoDataApps.WIKICAT -> context.getString(R.string.wikicatPro_appId)

@@ -12,6 +12,8 @@
     <string name="blockelganger">Blockelgänger</string>
     <string name="blockelganger_desc">You can\'t speak with it. You can\'t reason with it. You must smash into it.</string>
     <string name="blockelganger_appId">com.hotpodata.blockelganger</string>
+    <string name="blockelgangerPro_appId">com.hotpodata.blockelganger.pro</string>
+
 
     <string name="filecat">FileCat</string>
     <string name="filecat_desc">Browse files in a colorful way!</string>
