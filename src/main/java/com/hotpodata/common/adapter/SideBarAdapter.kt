@@ -22,7 +22,7 @@ import java.util.*
 /**
  * Created by jdrotos on 11/7/15.
  */
-abstract class SideBarAdapter(val ctx: Context, val analyticsProvider:IAnalyticsProvider?, val app: App, val isPro: Boolean, val showGoPro: Boolean, vararg libs: Libraries) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+abstract class SideBarAdapter(val ctx: Context, val analyticsProvider: IAnalyticsProvider?, val app: App, val isPro: Boolean, val showGoPro: Boolean, vararg libs: Libraries) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val CATEGORY_SIDEBAR = "SideBar"
     val ACTION_RATE_APP = "Rate_App"
@@ -138,7 +138,7 @@ abstract class SideBarAdapter(val ctx: Context, val analyticsProvider:IAnalytics
                 } catch(ex: Exception) {
                     Timber.e(ex, "Error recording analytics event.")
                 }
-            }, R.drawable.ic_action_rate))
+            }, R.drawable.ic_local_atm_24dp))
         }
         var contacts = Contact.Factory.genContacts(ctx, app.name)
         for (contact in contacts) {

@@ -57,6 +57,10 @@ open class App(val id: HotPoDataApps, val iconResId: Int, val name: String, val 
                 HotPoDataApps.TWISTRIS -> context.getString(R.string.twistris_appId)
                 HotPoDataApps.WIKICAT -> context.getString(R.string.wikicat_appId)
             }
+            var privacyPolicyUrl = when (app) {
+                HotPoDataApps.BLOCKELGANGER -> context.getString(R.string.blockelganger_privacyPolicyUrl)
+                else -> null
+            }
             var proId = when (app) {
                 HotPoDataApps.BACONMASHER -> context.getString(R.string.baconmasherPro_appId)
                 HotPoDataApps.BLOCKELGANGER -> context.getString(R.string.blockelgangerPro_appId)
@@ -65,13 +69,14 @@ open class App(val id: HotPoDataApps, val iconResId: Int, val name: String, val 
                 HotPoDataApps.WIKICAT -> context.getString(R.string.wikicatPro_appId)
                 else -> ""
             }
-            return App(app, icon, name, desc, applicationId, proId)
+
+            return App(app, icon, name, desc, applicationId, privacyPolicyUrl, proId)
         }
     }
 
     fun firePlayStoreIntent(context: Context, pro: Boolean = false): Boolean {
         try {
-            var intent = if (pro) genPlayStoreIntent(context) else genPlayStoreProIntent(context)
+            var intent = if (pro) genPlayStoreProIntent(context) else genPlayStoreIntent(context)
             if (intent != null) {
                 context.startActivity(intent)
                 return true
