@@ -16,6 +16,7 @@ import com.hotpodata.common.data.App
 import com.hotpodata.common.data.Contact
 import com.hotpodata.common.enums.Libraries
 import com.hotpodata.common.interfaces.IAnalyticsProvider
+import com.hotpodata.common.utils.AndroidUtils
 import timber.log.Timber
 import java.util.*
 
@@ -91,13 +92,7 @@ abstract class SideBarAdapter(val ctx: Context, val analyticsProvider: IAnalytic
         var sideBarRows = ArrayList<Any>()
 
         //HEADER ROW
-        var version: String? = null
-        try {
-            val pInfo = ctx.packageManager.getPackageInfo(ctx.packageName, 0)
-            version = ctx.resources.getString(R.string.version_template, pInfo.versionName)
-        } catch (e: PackageManager.NameNotFoundException) {
-            Timber.e(e, "Version fail")
-        }
+        var version = AndroidUtils.getVersionName(ctx)
         sideBarRows.add(SideBarAdapter.RowSideBarHeading(app.iconResId, app.name, version))
 
 
