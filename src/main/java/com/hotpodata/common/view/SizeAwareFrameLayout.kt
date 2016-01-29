@@ -9,7 +9,7 @@ import android.widget.FrameLayout
 /**
  * Created by jdrotos on 1/6/16.
  */
-class SizeAwareFrameLayout : FrameLayout {
+open class SizeAwareFrameLayout : FrameLayout {
 
     public interface ISizeChangeListener {
         fun onSizeChange(w: Int, h: Int, oldw: Int, oldh: Int)
